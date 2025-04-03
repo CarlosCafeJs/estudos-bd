@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234 # Defina a senha do root
+      MYSQL_DATABASE: estudos        # Defina o nome do banco de dados
+
+    ports:
+      - "3306:3306"                      # Mapeia a porta 3306 do contêiner para a porta 3306 do host
+    volumes:
+      - mysql_data:/var/lib/mysql        # Mapeia um volume persistente para o banco de dados
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_data:
+
+networks:
+  mysql_network:
+    driver: bridge
